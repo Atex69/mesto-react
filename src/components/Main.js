@@ -43,7 +43,7 @@ useEffect(() => {
                 <ul className="elements__container">
                     {cards.map((card, id) => (
                         <Card
-                            key={id}
+                            key={card.id}
                             card={card}
                             link={card.link}
                             name={card.name}

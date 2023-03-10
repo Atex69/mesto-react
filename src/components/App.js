@@ -16,7 +16,7 @@ function App() {
             setIsEditProfilePopupOpen(!isEditProfilePopupOpen);
     }
     function handleAddPlaceClick() {
-        setIsAddPlacePopupOpen(!isAddPlacePopupOpen);
+        setIsAddPlacePopupOpen(true);
     }
     function handleEditAvatarClick() {
         setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen);
@@ -113,9 +113,7 @@ function App() {
               onClose={closeAllPopups}
           />
       </div>
-
     </div>
-
   );
 }
 
