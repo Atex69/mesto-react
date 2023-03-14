@@ -76,21 +76,25 @@ function App() {
                   <>
                       <input
                           type="text"
-                          id="place"
+                          id="place_name"
                           name="place"
                           className="popup__input popup__input_type_title"
                           placeholder="Название"
                           minLength="2"
                           maxLength="30"
+                          value={name}
+                          onChange={handleNameChange}
                           required
                       />
                       <span className="popup__error place-error" id="place-error"></span>
                       <input
                           type="url"
                           name="link"
-                          id="link"
+                          id="place_link"
                           className="popup__input popup__input_type_link"
                           placeholder="Ссылка на картинку"
+                          value={link}
+                          onChange={handleLinkChange}
                           required
                       />
                       <span className="popup__error link-error" id="link-error"></span>
