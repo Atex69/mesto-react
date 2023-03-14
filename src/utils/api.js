@@ -41,13 +41,12 @@ class Api {
             })
     }
 
+
     getUserData() {
-        return fetch(`${this._url}users/me`, {
-            headers: this._headers
-        })
-            .then(res => {
-                return this._handleResponse(res);
-            })
+        const requestUrl = this._url + '/users/me';
+        return fetch(requestUrl, {
+            headers: this._headers,
+        }).then(this._handleResponse);
     }
 
     saveUserData(data) {
