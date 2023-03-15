@@ -7,40 +7,10 @@ class Api {
     _handleResponse(res) {
         if (res.ok) {
             return res.json();
+        } else {
+            return Promise.reject(`${res.status} ${res.statusText}`);
         }
-        return Promise.reject(`ошибки: ${res.status}`);
     }
-
-    getInitialCards() {
-        return fetch(`${this._url}cards`, {
-            headers: this._headers
-        })
-            .then(res => {
-                return this._handleResponse(res);
-            })
-    }
-
-    addNewCard({name, link}) {
-        return fetch(`${this._url}cards`, {
-            headers: this._headers,
-            method: 'POST',
-            body: JSON.stringify({name, link})
-        })
-            .then(res => {
-                return this._handleResponse(res);
-            })
-    }
-
-    deleteCard(cardId) {
-        return fetch(`${this._url}cards/${cardId}`, {
-            headers: this._headers,
-            method: 'DELETE',
-        })
-            .then(res => {
-                return this._handleResponse(res);
-            })
-    }
-
 
     getUserData() {
         const requestUrl = this._url + '/users/me';
@@ -49,48 +19,73 @@ class Api {
         }).then(this._handleResponse);
     }
 
-    saveUserData(data) {
-        return fetch(`${this._url}users/me`, {
+    getInitialCards() {
+        const requestUrl = this._url + '/cards';
+        return fetch(requestUrl, {
             headers: this._headers,
-            method: 'PATCH',
-            body: JSON.stringify({name: data.name, about: data.description})
-        })
-            .then(res => {
-                return this._handleResponse(res);
-            })
+        }).then(this._handleResponse);
     }
 
-    sendAvatar(avatar) {
-        return fetch(`${this._url}users/me/avatar`, {
-            headers: this._headers,
+    saveUserData(data) {
+        const requestUrl = this._url + '/users/me';
+        return fetch(requestUrl, {
             method: 'PATCH',
-            body: JSON.stringify({avatar: avatar.avatar})
-        })
-            .then(res => {
-                return this._handleResponse(res);
+            headers: this._headers,
+            body: JSON.stringify({
+                name: data.name,
+                about: data.description
             })
+        }).then(this._handleResponse);
+    }
+
+    addNewCard(data) {
+        const requestUrl = this._url + '/cards';
+        return fetch(requestUrl, {
+            method: 'POST',
+            headers: this._headers,
+            body: JSON.stringify({
+                name: data.name,
+                link: data.link
+            })
+        }).then(this._handleResponse);
+    }
+
+    deleteCard(data) {
+        const requestUrl = this._url + `/cards/${data._id}`;
+        return fetch(requestUrl, {
+            method: 'DELETE',
+            headers: this._headers,
+        }).then(this._handleResponse);
     }
 
     addLike(cardId) {
-        return fetch(`${this._url}cards/${cardId}/likes`, {
-            headers: this._headers,
+        const requestUrl = this._url + `/cards/likes/${cardId}`;
+        return fetch(requestUrl, {
             method: 'PUT',
-        })
-            .then(res => {
-                return this._handleResponse(res);
-            })
+            headers: this._headers,
+        }).then(this._handleResponse);
     }
 
     deleteLike(cardId) {
-        return fetch(`${this._url}cards/${cardId}/likes`, {
-            headers: this._headers,
+        const requestUrl = this._url + `/cards/likes/${cardId}`;
+        return fetch(requestUrl, {
             method: 'DELETE',
-        })
-            .then(res => {
-                return this._handleResponse(res);
-            })
+            headers: this._headers,
+        }).then(this._handleResponse);
     }
-}
+
+    sendAvatar(data) {
+        const requestUrl = this._url + `/users/me/avatar`;
+        return fetch(requestUrl, {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({
+                avatar: data.avatar_link
+            })
+        }).then(this._handleResponse);
+    }
+    }
+
 const api = new Api({
     url: "https://nomoreparties.co/v1/cohort-57/",
     headers: {
