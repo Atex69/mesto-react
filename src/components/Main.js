@@ -31,7 +31,7 @@ function Main(props) {
             </section>
             <section className="elements">
                 <ul className="elements__container">
-                    {props.cards.map((card, id) => (
+                    {props.cards.map((card) => (
                         <Card
                             key={card.id}
                             card={card}

@@ -146,7 +146,7 @@ function App() {
                         isOpen={isEditProfilePopupOpen}
                         onCloseClick={handlePopupCloseClick}
                         onClose={closeAllPopups}
-                        onSubmit={handleUpdateUser}
+                        onUpdateUser ={handleUpdateUser}
                     />
 
                     <AddPlacePopup

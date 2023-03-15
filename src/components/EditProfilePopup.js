@@ -7,6 +7,7 @@ function EditProfilePopup(props) {
     const [description, setDescription] = React.useState('');
     const currentUser = React.useContext(CurrentUserContext);
 
+
     function handleNameChange(evt) {
         setName(evt.target.value);
     }
@@ -15,15 +16,16 @@ function EditProfilePopup(props) {
         setDescription(evt.target.value);
     }
 
-    function handleSubmit(evt) {
-        evt.preventDefault();
+    function handleSubmit(e) {
+        // Запрещаем браузеру переходить по адресу формы
+        e.preventDefault();
 
-        props.onSubmit({
-            profile_name: name,
-            profile_job: description
+        // Передаём значения управляемых компонентов во внешний обработчик
+        props.onUpdateUser({
+            profile_name:name,
+            profile_description: description,
         });
     }
-
 
     React.useEffect(() => {
         if (props.isOpen) {
