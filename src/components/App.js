@@ -28,7 +28,7 @@ function App() {
     }, []);
 
     function handleUpdateUser(data) {
-        api.saveUserData(data).then((newUser) => {
+        api.setUserInfo(data).then((newUser) => {
             setCurrentUser(newUser);
             closeAllPopups();
         }).catch((err) => {

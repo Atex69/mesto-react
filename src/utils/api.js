@@ -26,16 +26,15 @@ class Api {
         }).then(this._handleResponse);
     }
 
-    saveUserData(data) {
-        const requestUrl = this._url + '/users/me';
-        return fetch(requestUrl, {
+    setUserInfo(data) {
+        return fetch(`${this._url}/users/me`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
                 name: data.name,
-                about: data.description
+                about: data.about
             })
-        }).then(this._handleResponse);
+        }).then(this._handleResponse)
     }
 
     addNewCard(data) {
