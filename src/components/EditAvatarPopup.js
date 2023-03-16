@@ -30,7 +30,7 @@ function EditAvatarPopup(props) {
         >
                     <input ref={ref} id="avatar_link" type="url" className="popup__input"
                            name="avatar" placeholder="Введите ссылку на аватар" minLength="2" maxLength="200" required/>
-                    <span class="popup__error" id="link-error"></span>
+                    <span className="popup__error" id="link-error"></span>
         </PopupWithForm>
     )
 }

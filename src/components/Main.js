@@ -33,7 +33,7 @@ function Main(props) {
                 <ul className="elements__container">
                     {props.cards.map((card) => (
                         <Card
-                            key={card.id}
+                            key={card._id}
                             card={card}
                             link={card.link}
                             name={card.name}
